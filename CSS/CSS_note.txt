@@ -1,0 +1,684 @@
+CSS:選擇器(給甚麼標籤改樣式)及聲明(改成甚麼) 寫在<head><style></style></head>之間
+
+
+基礎選擇器,(單個選擇器組成)		複合選擇器
+標籤選擇器				
+類選擇器				
+ID選擇器				
+通佩服選擇器				
+
+標籤選擇器:用HTML標籤名稱作為選擇器,標籤名分類,為某類標籤指定樣式
+類選擇器:單獨一個或某幾個標籤 (.類名 {屬性: 屬性值;}) 結構須使用class屬性來調用 <div class="red"> 變 色 </div>
+類選擇器-多類名:<div class="red font20"></div> 1.class中寫多個類名 2.多個類名用空格分開 3.多個人能使用
+id選擇器:id屬性來設置id選擇器, CSS中id選擇器以"#"來定義(#id名 {屬性: 屬性值;}) 只能調用一次,不能給別人使用(只能使用一次)
+通佩服選擇器:使用*定義,他表示選取頁面中所有的元素(標籤 (* {屬性: 屬性值;})
+	     1.不須調用,自動給所有元素樣式 
+
+
+CSS Fonts:字體系列,大小,粗細,樣式(斜體)
+font-family:定義字體系列 1.空格格開的多個單字組成的字體,加引號 2.多個字體以逗號隔開,若第一個字體無法顯示,用第二個字體顯示
+font-size:字體大小 font-size: 12px; 1.標題標籤底較特殊,需要單獨指定文字大小
+font-weight:粗細 
+font-style:文本風格 font-style: normal; font-style: italic;(斜體)
+
+
+
+字體屬性之複合屬性:節約代碼, 不可顛倒順序 個屬性以空格隔開, 不要的屬性可省略, 但font-size及font-family不可省
+body {
+	font: font-style font-weight font-size/line-height font-family;
+}
+
+文本颜色:color: red; or color: #ff000; or color: rgb(255, 0, 0);
+對其文本:text-align: left(左對齊); right(右對齊); center(居中) (水平對齊)
+裝飾文本:text-decoration: none; underline(下滑縣); overline(上滑陷); line-through(刪除);  (可以none去除超鏈結的下滑縣)\
+文本縮進:text-indent: 10px; 2em;(em是當前元素一個文字的大小)
+行間距:text-height: 26px; 還有 line-height
+-------------------------------------------------------------------------
+
+CSS引入方式
+1.行内樣式表:
+	元素標籤內style屬性設定樣式<div style="color: red; font-size: 12px;">青春不常在</div> 
+2.內部樣式表:
+	CSS放html的<style></style> (練習時常使用)
+3.外部樣式表:
+	(適合樣式比較多的情況) 單獨寫一個CSS文件
+	1.新建一個.css文件,把CSS代碼寫入
+	2.再html中使用<link>標籤引入這個文件
+	<link rel="stylesheet" href="檔案名 or CSS文件路徑">
+////////////////////////////////////////////////////////////////////
+
+Emmet語法
+輸入標籤名 按tab 自動生成<></>
+標籤名*個數 + tab鍵 生成多個標籤<></>
+標籤A>標籤B+tab  = <A> <B> </B> </A>
+標籤A+標籤B+tab = <A></A><B></B>
+標籤名.類名+tab = <A class = 類名></A>
+標籤名#ID +tab = <A id = ID></A>
+標籤名.demo$*5+tab = <A class=demo1></A>.....<A class = demo5></A>
+div{pink 老師不是gay} + tab = <div>....</div>
+div{我不喜歡男人}*5 + tab = <div>...</div> *5
+div{$}*5 + tab = <div>1</div> <div>2</div> ... <div>5</div>
+////////////////////////////////////////////////////////////////////
+
+Emmet CSS
+tac+tab = text-align = center;
+ti+tab = text-indent
+w+tab = width
+w100+tab =width:100px
+
+/////////////////////////////////////////////////////////////////////
+格式化代碼
+右鍵->格式化文檔
+
+////////////////////////////////////////////////////////////////////////
+複合選擇器
+
+後代選擇器
+<ol> <li> oo</li> </ol>
+<ul> <li>ppp</li> </ul>
+<style> ol li{ color:pink;}</style>
+元1 元2 {樣式聲明} (元一中的所有元二)(元二為元一後代)
+也可 .class 元素標籤 {}
+
+子元素選擇器
+只選親兒子 
+.nav>a {}  孫子不選
+
+
+並集選擇器
+元一,元二 {}  元一和元二改
+
+偽類選擇器
+用:表示 如:hover, :first-child
+鏈結偽類，結構偽類等
+1)鏈結偽類
+	a:link 選擇所有未被訪問的鏈結
+	a:visited 選擇所有已被訪問的鏈結
+	a:hover 選擇鼠標指針位於其上的鏈結
+	a:active 選擇鼠標按下未彈起的鏈結
+按照LVHA的順序寫!!!!!!!!!!!!
+a鏈結在瀏覽器中有默認樣式，所以實際工作中都需要給連結單獨指定樣式
+
+2):focus偽類選擇器
+	選獲得焦點的表單元素(哪個表單有光標)
+	input:focus{background-color: pink; color:red (改光標顏色)}
+/////////////////////////////////////////////////////////////////////
+元素的顯示模式
+HTML分為 塊元素 和 行內元素
+塊元素:h1~h6, p, div, ul, ol, li, div
+ 1)獨佔一行
+ 2)高寬 外邊距 內邊距 都可以控制
+ 3)寬度默認式容器的100%
+ 4)是個容器 裡面可放行內或塊級元素
+注 文字類塊級元素內不可放塊級元素(p h1~h6)
+
+行內元素: a, strong, b, em, i, del, s, ins, u, span等
+ 1)一行可顯示多個行內元素
+ 2)高寬直接設置是無效的
+ 3)默認寬度為文本寬度
+注 a中可放塊級元素
+
+行內塊元素: img input td
+//////////////////////////////////////////////////////
+
+轉換為塊元素:display:block;
+轉換為行內元素:display:inline;
+轉換為行內塊元素:display:inline-block;
+
+///////////////////////////////////////////////
+
+垂直居中:CSS沒有，所以讓文字的行高等於盒子就可以居中
+
+///////////////////////////////////////////////////
+
+背景圖片:
+background-image:none | url(url)
+background-repeat: repeat | no-repeat | repeat-x | repeat-y
+background-position: x y; 可使用方位名詞或精準單位 
+	length (百分數|---)
+	position (top|center|bottom|left|right)
+	@left top == top left
+background-attachment:scroll | fixed (背景固定)
+
+背景複合寫法:
+background:背景顏色 背景圖地址 背景repeaat 背景圖滾動 背景圖位址
+
+///////////////////////////////////////////////////////////
+
+背景色半透明!!
+background: rgba(0,0,0,0.3); 最後一個參數alpha透明度，取值範圍0-1之間
+
+/////////////////////////////////////////////////////
+
+CSS特性
+1.層疊性
+	只覆蓋衝突樣式
+	就近原則
+2.繼承性
+	子標籤繼承父標籤某些樣式 : text font line color
+ 	font: 12px/24px (文字大小/行高) font: 12px/1.5 (文字大小/當前文字大小的1.5倍)
+
+3.優先級
+	選擇器越針對性越優先 (!important>行內style>ID>class>標籤)
+	繼承來的樣式最不優先
+	a瀏覽器預設 a{color:blue;...} 繼承不能影響a
+	優先度會疊加 例如: .nav li > ul li 優先杜蕾加不會有進位問題(重要)
+////////////////////////////////////////////////////////////////////////
+
+CSS盒子模型
+border邊框
+content內容
+padding內邊距
+margin外邊距
+
+border (邊框寬度 樣式 顏色)
+border: border-width || border-style(solid dotted dashed) || border-color
+簡寫 border: 1px solid red 沒有順序
+邊框分開寫法 border-top -right -bottom -left:1px solid red (只設上邊框
+
+border-collapse: collapse (合併相鄰邊框)
+
+邊框會影響盒子實際大小
+
+padding
+padding-top, padding-right -top -bottom
+padding: Xpx  一個值(上下左右) 兩個值(第一個值上下，第二個值左右) 三個值(上，左右，下) 四個值(上，右，下，左，順時針)
+padding也會影響盒子大小!!!!
+
+若盒子本身沒有指定width/height 則padding不會撐開盒子大小!!!
+
+margin外邊距
+margin-left -right -top -buttom
+
+/////////////////////////////////////////////////////////////////////////////
+
+外邊距可以讓塊級盒子水平居中
+左右外邊距設為auto
+
+///////////////////////////////////////////////////////////////////////////
+邊框塌陷問題
+1. 為父元素定義上邊框
+2. 為父元素定義上內邊距
+3. 為父元素增加overflow:hidden
+
+/////////////////////////////////////////////////////
+
+清除默認內外邊距
+* {padding:0; margin:0;) 這句話也是我們CSS的第一行代碼
+ 
+
+//////////////////////////////////////////////////////////
+
+去掉li前面的知識點!!!!
+list-style: none;
+
+////////////////////////////////////////////
+
+圓角邊框 盒子陰影 文字陰影
+border-radius: length(px or百分比(寬度和高度的x%))); (邊框圓角)
+設為高度的一半->變成圓矩形圓 
+該簡寫是 border-radius
+border-top-left-radius border-bottom-right-radius
+
+//////////////////////////////////////////////
+
+盒子陰影
+box-shadow: h-shadow v-shadow blur spead color inset
+h-shadow:必須 水平陰影位置
+v-shadow:必須 垂直陰影位置
+blur:可選 模糊距離
+spread: 可選 陰影的尺寸
+color: 可選 陰影的顏色
+inset: 可選 將外部陰影改為內部陰影
+
+文字陰影
+text-shadow: h-shadow v-shadow blur color
+
+/////////////////////////////////////////////////////////////
+
+CSS浮動
+選擇器 {float:屬性值;} (none, left, right)
+1.脫離標準流的控制，移動到指定位置(脫標)
+2.浮動的盒子不再保留原先位置
+
+float浮動後 行內元素和塊元素都具備行內塊元素特性 不須再轉換
+
+
+先用父元素排列上下位置 之後內部子元素浮動排列
+
+浮動盒子只會影響浮動盒子後面的標準流，不影響前面的標準流
+
+///////////////////////////////////////////////////////////////////
+
+清除浮動
+清除浮動元素造成的影響
+若父盒子有高度，不必清除浮動，
+清除浮動後，父親就會根據浮動的子盒子自動檢測高度
+選擇器{clear:屬性值;} (left right both)  工作中幾乎只用both
+1.額外標籤法
+	在浮動元素後方新增一個標籤(必須是塊級元素)包含 clear:both
+2.給父親添加overflow
+	設為 hidden auto 或 scroll 都可以
+3.after偽元素法
+	額外標籤法的升級版 也是給父親添加
+4.雙偽元素清除浮動
+	 
+/////////////////////////////////////////////////////////////////////////////////
+
+實際開發中， 導航欄製作通常使用(li+a)的作法， 而不單單使用a
+
+//////////////////////////////////////////////////////////////////////////////////
+
+行內塊元素中間有默認縫隙
+
+///////////////////////////////////////////////////////////////////////////////////
+
+浮動的盒子不會有外邊距合併塌陷的問題
+
+///////////////////////////////////////////////////////////////////////////////////
+
+CSS定位!!!!!!!!!!!!!!!!!!!!!!!!!
+定位=定位模式+邊偏移
+
+定位模式: position屬性來設置
+	 static 靜態定位
+       	 relative 相對定位
+ 	 absolute 絕對定位
+	 fixed 固定定位
+
+邊偏移: top bottom left right
+	top:80px
+	bottom:80px
+	left:80px
+	right:80px
+
+//////////////////////////////////////////////////////////////////////////////////
+
+static靜態定位
+默認定位方式 無定位的意思
+選擇器 { position:static;}
+
+relative相對定位
+相對於它原來的位置來說的
+選擇器 {position:relative;}
+移動前的位置會保留
+
+absolute絕對定位
+相對於他的祖先素來說的
+若沒有祖先元素或祖先元素沒有定位 則以瀏覽器為準定位
+!!!!!不再佔有原先的位置  脫標的!!!!!!!!!!!!!!!!!!!!!!!!
+
+子絕父相
+子級絕對定位，可以放到父盒子裡面的任何地方，不影響其他兄弟盒子
+
+fixed固定定位 (重要)
+將元素固定於瀏覽器可視區的位置
+選擇器{position:fixed;}
+與父元素沒有關係
+脫標 不佔有原來位置
+1.讓固定定位盒子left:50%
+2.margin-left:版心大小的一半
+
+sticky黏性定位 (了解)
+相對定位和固定定位的混合
+選擇器{position:sticky; top:10px;}
+1.以瀏覽器的可視窗口為參照點移動元素
+2.佔有原先位置(相對定位特點)
+3.需添加top left right bottom 其中一個才有效
+
+/////////////////////////////////////////////////////////////////////////////////
+
+定位疊放次序 z-index
+可能出現盒子重疊，用z-index控制盒子前後次序
+選擇器{z-index: 1;}
+數值可是 正整數 負整數 或 0   默認auto  數值越大，盒子越靠上
+只有定位盒子才有z-index
+
+加了絕對定位的盒子不能通過margin:0 auto 水平居中
+標準流盒子才能用margin:auto居中  相對定位可以 固定絕對定位不行
+
+////////////////////////////////////////////////////////////////////////
+
+設了絕對定位 float 固定定位 的行內元素可以直接加寬高
+塊元素加了 若不給寬高 默認大小為內容大小
+脫標不會外邊距塌陷
+
+/////////////////////////////////////////////////////////////////////////
+
+絕對定位 固定定位 會完全壓住盒子 
+浮動元素不同 只會壓住下面標準流的盒子 但不會壓住標準流盒子裡面的文字
+
+//////////////////////////////////////////////////////////////////////
+
+讓一個元素在頁面中顯示出來
+1.display 顯示隱藏
+	display:none; 隱藏對象 (位置不被保留) 
+	display:block; 除了轉換為塊級元素外，同時有顯示元素的意思
+2.visibility 顯示隱藏
+	visibiity:visible; 元素可視 
+	visibility:hidden; 元素隱藏 (位置保留)
+3.overflow 溢出顯示隱藏
+	overflow:visible;
+	overflow:hidden;
+	overflow:scroll;
+	overflow:auto; 需要時增加滾動條
+////////////////////////////////////////////////////////////////////////////
+
+CSS高級技巧
+
+精靈圖
+background-postion 來實現
+
+字體圖標 iconfont 可當字體使用
+1.下載字體圖標 iconfont.cn icomoon.io
+ 字體圖標追加 input selection.json
+
+CSS三角形
+border: 50px solid trasparent;
+border-left-color: pink;
+
+CSS用戶界面方式
+ 1.鼠標樣式 cursor
+	li {cursor:pointer;}
+	default pointer move text not-allowed
+ 2.輪廓線 outline
+	input {outline: none;} 去掉默認的藍色邊框
+ 3.防止拖曳文本域 resize
+	textarea{ resize: none;}
+	textarea{ outline: none;}
+
+CSS vertical-align 屬性
+行內元素與行內塊元素有效 垂直對齊方式
+vertical-align: baseline | top | middle | bottom
+
+單行文本溢出顯示省略號
+white-space:nowrap; (強制一行內顯示文本)
+overflow: hidden;
+text-overflow:ellipsis;
+
+多行文本溢出顯示省略號
+overflow:hidden;
+text-overflow:ellipsis;
+display:-webkit-box;
+-webkit-line-clamp: 2; (限制一個塊元素顯示的文本行數)
+-webkit-box-orient: vertical; 
+
+相對定位會壓住盒子
+1.如果盒子沒有定位 則屬標經過添加相對定位
+2.如果li都有定位 則加z-index
+
+直角三角形:
+width:0; 
+height:0;
+border-color: transparent red trans trans;
+border-style: solid;
+border-width: 22px 8px 0 0 ;
+
+//////////////////////////////////////////////////////////////
+
+CSS reset
+-webkit-font-smoothing: antialiased; (讓文字顯示更加清晰)
+
+/////////////////////////////////////////////////////////////////////////////////
+
+HTML5新特性
+<header> 頭部
+<nav> 導航標籤
+<article> 內容標籤 
+<section> 定義文黨某個區域
+<aside> 側邊藍標籤
+<footer> 尾部標籤
+
+多媒體標籤
+<audio> 音頻
+<video> 視頻 mp4
+1.<video src="文件地址" controls="controls"></video>
+2.
+ <video controls="controls" width="300">
+	<source src = " .ogg" type="video/ogg">
+	<source src = " .mp4" type="video/mp4">
+ 	您的瀏覽器不支持<video>標籤播放視頻
+ </video>
+
+////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

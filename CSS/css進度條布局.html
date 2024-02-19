@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bar {
+            width: 150px;
+            height: 15px;
+            padding: 1px;
+            border-radius: 7px;
+            border: 1px solid red;
+        }
+
+        .bar_in {
+            width: 50%;
+            height: 100%;
+            background-color: red;
+            border-top-left-radius: 7.5px;
+            border-bottom-left-radius: 7.5px;
+            /*誰做過渡給誰加*/
+            transition: all .7s;
+        }
+
+        .bar:hover .bar_in {
+            width: 100%;
+            border-top-right-radius: 7.5px;
+            border-bottom-right-radius: 7.5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bar">
+        <div class="bar_in"></div>
+    </div>
+</body>
+
+</html>
